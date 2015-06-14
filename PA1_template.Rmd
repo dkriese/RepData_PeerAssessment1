@@ -21,6 +21,7 @@ if (!require("lattice")) {
 }
 library(lattice)
 ## Loading and preprocessing the data
+#### Note: I needed to manually install knitr (and run the library command for it) on the command line. Then I was able to run: knit2html('Pa1_template.Rmd') to process this file, per the instructions.
 ```{r load_and_preprocess, echo=TRUE}
 ###System Information
 system_info <- Sys.info()

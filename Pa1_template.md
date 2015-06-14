@@ -21,6 +21,7 @@ if (!require("lattice")) {
 }
 library(lattice)
 ## Loading and preprocessing the data
+#### Note: I needed to manually install knitr (and run the library command for it) on the command line. Then I was able to run: knit2html('Pa1_template.Rmd') to process this file, per the instructions.
 
 ```r
 ###System Information
@@ -103,7 +104,9 @@ xyplot(steps ~ Interval, data=avg_steps, type="l",
      scales = list(x=list(at=seq(0, 288, by=24), labels=seq(0,24,2))))
 ```
 
-![plot of chunk average_daily_activity_pattern_plot](figure/average_daily_activity_pattern_plot-1.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "xyplot"
+```
 ##### 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
 ```r
@@ -137,8 +140,22 @@ cat(paste0("The maximum number of steps, on average, across all days in the data
 # is needed for plotting the histogram.
 adc <- dcast(activity_df, interval ~ date, 
              value.var = 'steps', fill=avg_steps$steps)
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "dcast"
+```
+
+```r
 ## convert back to long form
 adm <- melt(adc, id.vars = c("interval"), value.name = "steps")
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "melt"
+```
+
+```r
 hist(adm$steps, plot=TRUE, xlab='Steps', 
      main = "Number of Steps Taken per Day using Imputed Values")
 ```
@@ -176,7 +193,9 @@ adm$day_category <- ifelse ( weekdays(as.POSIXct( adm$variable ) ) %in%
 xyplot(steps ~ interval | day_category, data = adm, type="l", layout = c(1,2), ylab="Number of steps")
 ```
 
-![plot of chunk activity_patterns_weekdays_plot](figure/activity_patterns_weekdays_plot-1.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "xyplot"
+```
 ##### Observations: 
 1) The histogram showing the number of steps, *given steps were taken*, is more 
  meaningful than the histogram with imputed values for missing values.
